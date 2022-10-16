@@ -29,22 +29,22 @@ class InternetConnectionChecker {
   /// - https://www.google.com/search?q=dns+server+port
   static const int DEFAULT_PORT = 53;
 
-  /// Default timeout is 10 seconds.
+  /// Default timeout is 2 seconds.
   ///
   /// Timeout is the number of seconds before a request is dropped
   /// and an address is considered unreachable
-  static const Duration DEFAULT_TIMEOUT = Duration(seconds: 10);
+  static const Duration DEFAULT_TIMEOUT = Duration(seconds: 2);
 
-  /// Default interval is 10 seconds
+  /// Default interval is 2 seconds
   ///
   /// Interval is the time between automatic checks
-  static const Duration DEFAULT_INTERVAL = Duration(seconds: 10);
+  static const Duration DEFAULT_INTERVAL = Duration(seconds: 2);
 
   /// Predefined reliable addresses. This is opinionated
   /// but should be enough. See https://www.dnsperf.com/#!dns-resolvers
   ///
   /// Addresses info:
-  ///
+  ///https://www.datisnetwork.com/best-dns-server-iran.html
   /// <!-- kinda hackish ^_^ -->
   /// <style>
   /// table {
@@ -57,36 +57,25 @@ class InternetConnectionChecker {
   ///
   /// | Address        | Provider   | Info                                            |
   /// |:---------------|:-----------|:------------------------------------------------|
+  /// | 194.36.174.161 | Asiatech |                                |
   /// | 1.1.1.1        | CloudFlare | https://1.1.1.1                                 |
-  /// | 1.0.0.1        | CloudFlare | https://1.1.1.1                                 |
-  /// | 8.8.8.8        | Google     | https://developers.google.com/speed/public-dns/ |
-  /// | 8.8.4.4        | Google     | https://developers.google.com/speed/public-dns/ |
-  /// | 208.67.222.222 | OpenDNS    | https://use.opendns.com/                        |
-  /// | 208.67.220.220 | OpenDNS    | https://use.opendns.com/                        |
+
   static final List<AddressCheckOptions> DEFAULT_ADDRESSES =
       List<AddressCheckOptions>.unmodifiable(
     <AddressCheckOptions>[
       AddressCheckOptions(
         InternetAddress(
+          '194.36.174.161', // Asiatech
+          type: InternetAddressType.IPv4,
+        ),
+        port: DEFAULT_PORT,
+        timeout: DEFAULT_TIMEOUT,
+      ),
+      AddressCheckOptions(
+        InternetAddress(
           '1.1.1.1', // CloudFlare
           type: InternetAddressType.IPv4,
         ),
-        port: DEFAULT_PORT,
-        timeout: DEFAULT_TIMEOUT,
-      ),
-      AddressCheckOptions(
-        InternetAddress(
-          '8.8.4.4', // Google
-          type: InternetAddressType.IPv4,
-        ),
-        port: DEFAULT_PORT,
-        timeout: DEFAULT_TIMEOUT,
-      ),
-      AddressCheckOptions(
-        InternetAddress(
-          '208.67.222.222', // OpenDNS
-          type: InternetAddressType.IPv4,
-        ), // OpenDNS
         port: DEFAULT_PORT,
         timeout: DEFAULT_TIMEOUT,
       ),
