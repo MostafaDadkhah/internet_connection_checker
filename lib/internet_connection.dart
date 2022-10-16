@@ -38,7 +38,7 @@ class InternetConnectionChecker {
   /// Default interval is 2 seconds
   ///
   /// Interval is the time between automatic checks
-  static const Duration DEFAULT_INTERVAL = Duration(seconds: 2);
+  static const Duration DEFAULT_INTERVAL = Duration(seconds: 10);
 
   /// Predefined reliable addresses. This is opinionated
   /// but should be enough. See https://www.dnsperf.com/#!dns-resolvers
