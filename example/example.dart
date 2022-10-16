@@ -19,7 +19,7 @@ Future<void> main() async {
 
   // This returns the last results from the last call
   // to either hasConnection or connectionStatus
-  print('Last results: ${InternetConnectionChecker().lastTryResults}');
+  //print('Last results: ${InternetConnectionChecker().lastTryResults}');
 
   // actively listen for status updates
   StreamSubscription<InternetConnectionStatus> listener =

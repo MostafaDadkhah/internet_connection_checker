@@ -57,7 +57,8 @@ class InternetConnectionChecker {
   ///
   /// | Address        | Provider   | Info                                            |
   /// |:---------------|:-----------|:------------------------------------------------|
-  /// | 194.36.174.161 | Asiatech |                                |
+  /// | 194.36.174.161 | Asiatech   |                                                 |
+  /// | 1.1.1.1        | CloudFlare | https://1.1.1.1                                 |
   /// | 1.1.1.1        | CloudFlare | https://1.1.1.1                                 |
 
   static final List<AddressCheckOptions> DEFAULT_ADDRESSES =
@@ -129,8 +130,8 @@ class InternetConnectionChecker {
   ///
   /// The list is populated only when [hasConnection]
   /// (or [connectionStatus]) is called.
-  List<AddressCheckResult> get lastTryResults => _lastTryResults;
-  List<AddressCheckResult> _lastTryResults = <AddressCheckResult>[];
+  //List<AddressCheckResult> get lastTryResults => _lastTryResults;
+  // List<AddressCheckResult> _lastTryResults = <AddressCheckResult>[];
 
   /// Initiates a request to each address in [addresses].
   /// If at least one of the addresses is reachable
@@ -140,28 +141,32 @@ class InternetConnectionChecker {
     List<Future<AddressCheckResult>> requests = <Future<AddressCheckResult>>[];
 
     for (AddressCheckOptions addressOptions in addresses) {
-      requests.add(
-        isHostReachable(
-          addressOptions,
-        ),
+      final AddressCheckResult r = await isHostReachable(
+        addressOptions,
       );
+      requests.add(Future<AddressCheckResult>.value(r));
+      if (r.isSuccess) {
+        //requests.add(Future<AddressCheckResult>.value(r));
+        return true;
+      }
     }
-    _lastTryResults = List<AddressCheckResult>.unmodifiable(
-      await Future.wait(
-        requests,
-      ),
-    );
+    return false;
+    // _lastTryResults = List<AddressCheckResult>.unmodifiable(
+    //   await Future.wait(
+    //     requests,
+    //   ),
+    // );
 
-    return _lastTryResults
-        .map(
-          (
-            AddressCheckResult result,
-          ) =>
-              result.isSuccess,
-        )
-        .contains(
-          true,
-        );
+    // return requests
+    //     .map(
+    //       (
+    //         AddressCheckResult result,
+    //       ) =>
+    //           result.isSuccess,
+    //     )
+    //     .contains(
+    //       true,
+    //     );
   }
 
   /// Initiates a request to each address in [addresses].

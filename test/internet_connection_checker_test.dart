@@ -14,12 +14,12 @@ void main() async {
       listener2?.cancel();
     });
 
-    test('''Initial results List 'lastTryResults' should be empty''', () {
-      expect(
-        InternetConnectionChecker().lastTryResults,
-        isEmpty,
-      );
-    });
+    // test('''Initial results List 'lastTryResults' should be empty''', () {
+    //   expect(
+    //     InternetConnectionChecker().lastTryResults,
+    //     isEmpty,
+    //   );
+    // });
 
     test('''Shouldn't have any listeners attached''', () {
       expect(
@@ -42,14 +42,14 @@ void main() async {
       );
     });
 
-    test(
-        '''InternetConnectionChecker().lastTryResults should not be empty after '''
-        '''an awaited call to either hasConnection or connectionStatus''', () {
-      expect(
-        InternetConnectionChecker().lastTryResults,
-        isNotEmpty,
-      );
-    });
+    // test(
+    //     '''InternetConnectionChecker().lastTryResults should not be empty after '''
+    //     '''an awaited call to either hasConnection or connectionStatus''', () {
+    //   expect(
+    //     InternetConnectionChecker().lastTryResults,
+    //     isNotEmpty,
+    //   );
+    // });
 
     test(
         '''Unawaited call to connectionStatus '''
