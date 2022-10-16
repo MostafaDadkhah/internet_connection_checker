@@ -59,7 +59,9 @@ class InternetConnectionChecker {
   /// |:---------------|:-----------|:------------------------------------------------|
   /// | 194.36.174.161 | Asiatech   |                                                 |
   /// | 1.1.1.1        | CloudFlare | https://1.1.1.1                                 |
-  /// | 1.1.1.1        | CloudFlare | https://1.1.1.1                                 |
+  /// | 82.99.242.155  | ParsOnline |
+  /// | 178.22.122.100 | Shecan     | https://shecan.ir
+  /// | 185.51.200.2   | Shecan     | https://shecan.ir
 
   static final List<AddressCheckOptions> DEFAULT_ADDRESSES =
       List<AddressCheckOptions>.unmodifiable(
@@ -67,6 +69,30 @@ class InternetConnectionChecker {
       AddressCheckOptions(
         InternetAddress(
           '194.36.174.161', // Asiatech
+          type: InternetAddressType.IPv4,
+        ),
+        port: DEFAULT_PORT,
+        timeout: DEFAULT_TIMEOUT,
+      ),
+      AddressCheckOptions(
+        InternetAddress(
+          '82.99.242.155', // ParsOnline
+          type: InternetAddressType.IPv4,
+        ),
+        port: DEFAULT_PORT,
+        timeout: DEFAULT_TIMEOUT,
+      ),
+      AddressCheckOptions(
+        InternetAddress(
+          '178.22.122.100', // Shecan
+          type: InternetAddressType.IPv4,
+        ),
+        port: DEFAULT_PORT,
+        timeout: DEFAULT_TIMEOUT,
+      ),
+      AddressCheckOptions(
+        InternetAddress(
+          '185.51.200.2', // Shecan
           type: InternetAddressType.IPv4,
         ),
         port: DEFAULT_PORT,
